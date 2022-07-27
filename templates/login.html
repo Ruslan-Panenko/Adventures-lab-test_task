@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>123</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+</head>
+<body>
+<h1>Login</h1>
+
+<form  action="/main" method="post">
+    Login
+    <p><input type="text" name="username" placeholder="username"></p>
+    Password
+    <p><input type="password" name="password" placeholder="password"></p>
+    <input type="submit">
+</form>
+
+
+</body>
+</html>

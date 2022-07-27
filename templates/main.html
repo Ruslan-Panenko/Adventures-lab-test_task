@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+
+</head>
+<body>
+
+<div><button type="submit" class="btn">Update</button></div>
+
+
+
+<script>
+    document.querySelector('.btn').addEventListener('click', handleClick);
+
+
+    async function handleClick() {
+        const response = await fetch('api/v1/posts')
+        const posts = await response.json()
+
+        const $posts = document.createElement('div')
+        $posts.classList.add('posts')
+
+        for(let i = 0; i < posts.slice(0, 20).length; i++) {
+            const post = posts[i];
+            const $post = document.createElement('div')
+            $post.classList.add('post');
+
+            const $postTitle = document.createElement('h2')
+            $postTitle.textContent = post.title
+            $post.appendChild($postTitle)
+
+            const $postPrice = document.createElement('p')
+            $postPrice.textContent = post.price
+            $post.appendChild($postPrice)
+
+            const $postImg = document.createElement('img')
+            $postImg.setAttribute('src', post.img)
+            $post.appendChild($postImg)
+
+
+            $post.setAttribute('data-id', post.id)
+
+            const $deleteAction = document.createElement('button')
+            $deleteAction.textContent = `Delete post with ID: ${post.id}`
+            $deleteAction.classList.add('delete')
+
+
+            $deleteAction.addEventListener('click', function () {
+                // console.log(event.path[1])
+                // console.log(event.path[1].parentNode)
+                // console.log(this.parentNode)
+                const $postToDelete = document.querySelector(`.post[data-id="${post.id}"]`)
+                $posts.removeChild($postToDelete);
+            })
+
+
+            $post.appendChild($deleteAction)
+            $posts.appendChild($post);
+        }
+
+        document.querySelector('body').appendChild($posts)
+
+        // return new Promise(())
+    }
+</script>
+
+</body>
+</html>

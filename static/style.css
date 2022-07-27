@@ -1,0 +1,14 @@
+.post {
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin-bottom: 24px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: indigo;
+            padding: 8px 24px;
+            color: #fff;
+            border-radius: 24px;
+            cursor: pointer;
+        }
